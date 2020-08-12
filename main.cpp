@@ -128,31 +128,6 @@ void endingSections(int n){
 	}
 }
 
-//monstrar usuarios registrados
-int getRegisterUser(){
-	try{
-		if (select == 1){
-			//usuarios registrados
-			printf ("\n--Usuarios registrado s-- \n");
-				
-			if (userData.is_open()){
-				cout << endl << users[0] << " --Registrado--";
-			}
-			
-			for (int i = 1; i <= 2; i++){
-				cout << endl << users[i];
-			}
-			
-			if (select ){
-				throw 0;
-			}
-		}
-	}catch(int x){
-		printf ("ERROR 004 - Files no found");
-		exit(1);
-	}	
-}
-
 //registro de pasajero en el sistema
 int setRegistreUser(){
 	
@@ -480,7 +455,27 @@ int getRegistreData(){
 	ifstream userData("userData.txt", ios::in);
 	string users[3] = {"User 1" ,"User 2", "User 3"};
 	
-		
+	try{
+		if (select == 1){
+			//usuarios registrados
+			printf ("\n--Usuarios registrado s-- \n");
+				
+			if (userData.is_open()){
+				cout << endl << users[0] << " --Registrado--";
+			}
+			
+			for (int i = 1; i <= 2; i++){
+				cout << endl << users[i];
+			}
+			
+			if (select != 1 || select != 2){
+				throw 0;
+			}
+		}
+	}catch(int x){
+		printf ("ERROR 004 - Files no found");
+		exit(1);
+	}		
 	
 			int usersSelect;
 			cout << endl << endl << "cual datos de usuario desea ver?" << endl;
