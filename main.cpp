@@ -128,6 +128,31 @@ void endingSections(int n){
 	}
 }
 
+//monstrar usuarios registrados
+int getRegisterUser(){
+	try{
+		if (select == 1){
+			//usuarios registrados
+			printf ("\n--Usuarios registrado s-- \n");
+				
+			if (userData.is_open()){
+				cout << endl << users[0] << " --Registrado--";
+			}
+			
+			for (int i = 1; i <= 2; i++){
+				cout << endl << users[i];
+			}
+			
+			if (select ){
+				throw 0;
+			}
+		}
+	}catch(int x){
+		printf ("ERROR 004 - Files no found");
+		exit(1);
+	}	
+}
+
 //registro de pasajero en el sistema
 int setRegistreUser(){
 	
@@ -452,40 +477,24 @@ int getRegistreData(){
 	int select;
 	cin >> select;
 	
-	if (select == 1){
-		//usuarios registrados
-		string users[3] = {"User 1" ,"User 2", "User 3"};
-		printf ("\n--Usuarios registrado s-- \n");
+	ifstream userData("userData.txt", ios::in);
+	string users[3] = {"User 1" ,"User 2", "User 3"};
+	
 		
-		
-		ifstream userData("userData.txt", ios::in);
-		if (userData.is_open()){
-			cout << endl << users[0] << " --Registrado--";
-		}else{
-			printf ("ERROR 004 - Files no found");
-			exit(1);
-		}	
-		
-		for (int i = 1; i <= 2; i++){
-			cout << endl << users[i];
-		}
-		
-		int usersSelect;
-		cout << endl << endl << "cual datos de usuario desea ver?" << endl;
-		cin >> usersSelect;
-		
-		if (usersSelect == 1){
-			cout << endl << "--Datos del usuario *" << users[0] << "*--" << endl;
-			string line;
-				while (getline(userData, line)){
-					cout << line << "\n";
-				}
-			userData.close();
-			//funcion para llamar a los datos correspondientes al orden de registro
-		}else{
-			printf ("ERROR 004 - Files no found");
-			exit(1);
-		}
+	
+			int usersSelect;
+			cout << endl << endl << "cual datos de usuario desea ver?" << endl;
+			cin >> usersSelect;
+			
+			if (usersSelect == 1){
+				cout << endl << "--Datos del usuario *" << users[0] << "*--" << endl;
+				string line;
+					while (getline(userData, line)){
+						cout << line << "\n";
+					}
+				userData.close();
+				//funcion para llamar a los datos correspondientes al orden de registro
+			}
 		
 		printf ("------------------------------\n\n");
 		printf ("Desea terminar la revision de registros? \n(1)Si \n(2)No \n");
@@ -495,7 +504,6 @@ int getRegistreData(){
 		if (i == 2){
 			getRegistreData();
 		}
-	}
 	
 	if (select == 2){
 		

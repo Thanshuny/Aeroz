@@ -1,7 +1,7 @@
 Nombres: Luis Armando
 Apellidos: Montero Marcano
-Cedula de identidad: 2869408
-Pasaporte: 213456789
+Cedula de identidad: 28694084
+Pasaporte: 132456789
 Edad: 17
 
 Numeros telefonicos: 
