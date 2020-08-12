@@ -1,0 +1,14 @@
+Origen del viaje: 
+Pais: Venezuela
+Ciudad: Bolivar
+
+Destino del viaje: 
+Pais: espa¤a
+Ciudad: Madrid
+
+Aerolinea: Aereo 7w7
+Clase: Segunda Clase
+Numero del asiento: 3
+Numero de ticket: #00938
+Localizador del ticket: #MOCBCA
+Precio de gastos en total: 400$
