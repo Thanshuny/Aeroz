@@ -1,14 +1,14 @@
 Origen del viaje: 
-Pais: Venezuela
-Ciudad: Bolivar
+Pais: venzuela
+Ciudad: bolivar
 
 Destino del viaje: 
-Pais: espa¤a
-Ciudad: Madrid
+Pais: ucrania
+Ciudad: Hakgoer
 
-Aerolinea: Aereo 7w7
+Aerolinea: Aereo UwU
 Clase: Segunda Clase
-Numero del asiento: 3
-Numero de ticket: #00938
-Localizador del ticket: #MOCBCA
-Precio de gastos en total: 400$
+Numero del asiento: 5
+Numero de ticket: #00872
+Localizador del ticket: #IFFOCB
+Precio de gastos en total: 200$

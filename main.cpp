@@ -23,6 +23,7 @@ int main() {
 	cout << "(1) Registro de pasajero" << endl;
 	cout << "(2) Registrar la venta de un boleto aereo" << endl;
 	cout << "(3) Ver usuarios registrados y ventas registradas"<< endl;
+	cout << "(4) Finalizar el programa"<< endl;
 	
 	int sel;
 	cin >> sel;
@@ -44,6 +45,11 @@ int main() {
 			confirmSection(sel);
 			getRegistreData();
 			endingSections(sel);
+		break;
+		
+		case 4:
+			confirmSection(sel);
+			exit(1);
 		break;
 		
 		default:
@@ -252,7 +258,7 @@ int setRegistreSelf(){
 		setRegistreUser(); //llamando nuevamente al registro de usuario
 		cout << endl << "---usuario registrado---" << endl << endl;
 		
-	}else if (i != 1 || i != 2){
+	}else if (i >= 3){
 		printf ("ERROR 004 - Character unklond");
 		return 0;	
 	}
@@ -466,22 +472,9 @@ int getRegistreData(){
 			printf ("\n--Usuarios registrado s-- \n");
 				
 			if (userData.is_open()){
-				cout << endl << users[0] << " --Registrado--";
-			}else{
-				printf ("ERROR 006 - File not found");
-				exit(-1);	
-			}
-			
-		}else if (select >= 3){
-			throw 0;
-		}
-		
-	}catch(int x){
-		printf ("ERROR 004 - Character unklond");
-		exit(-1);
-	}		
-	
-			int usersSelect;
+			cout << endl << users[0] << " --Registrado--";
+				
+		    int usersSelect;
 			cout << endl << endl << "cual datos de usuario desea ver?" << endl;
 			cin >> usersSelect;
 			
@@ -491,23 +484,29 @@ int getRegistreData(){
 					while (getline(userData, line)){
 						cout << line << "\n";
 					}
+					
 				userData.close();
 				//funcion para llamar a los datos correspondientes al orden de registro
 			}
 		
-		printf ("------------------------------\n\n");
-		printf ("Desea terminar la revision de registros? \n(1)Si \n(2)No \n");
-		int i;
-		cin >> i;
-		
-		if (i == 2){
-			getRegistreData();
-		}
-	
-	try{
-		if (select == 2){
+			printf ("------------------------------\n\n");
+			printf ("Desea terminar la revision de registros? \n(1)Si \n(2)No \n");
+			int i;
+			cin >> i;
+				
+			if (i == 1){
+				exit(1);
+			}else if (i == 2){
+				getRegistreData();
+			}	
 			
-			//ventas registradas
+			}else{
+				printf ("ERROR 006 - File not found");
+				exit(-1);	
+			}
+				
+		}else if (select == 2){	//ventas registra
+		
 			string self[3] = {"Self 1"};
 			printf ("\n--Ventas registradas-- \n");
 			
@@ -527,12 +526,14 @@ int getRegistreData(){
 			if (selfSelect == 1){
 				cout << endl << "--Datos dela venta *" << self[0] << "*--" << endl;
 				string line;
+				
 					while (getline(registreSelfData, line)){
 						cout << line << "\n";
-					}
+					}	
+					
 				registreSelfData.close();
-				//funcion para llamar a los datos correspondientes al orden de registro
-			}else{
+				
+			}else{   
 				printf ("ERROR 004 - Files no found");
 				exit(1);
 			}
@@ -549,6 +550,7 @@ int getRegistreData(){
 		}else if (select >= 3){
 			throw 0;
 		}
+		
 	}catch(int x){
 		printf ("ERROR 004 - Character unklond");
 		exit(-1);
