@@ -1,14 +1,14 @@
 Origen del viaje: 
-Pais: venzuela
+Pais: Venezuela
 Ciudad: bolivar
 
 Destino del viaje: 
-Pais: ucrania
-Ciudad: Hakgoer
+Pais: chile
+Ciudad: santiago
 
-Aerolinea: Aereo UwU
-Clase: Segunda Clase
-Numero del asiento: 5
-Numero de ticket: #00872
-Localizador del ticket: #IFFOCB
-Precio de gastos en total: 200$
+Aerolinea: Aereo OwO
+Clase: Primera Clase
+Numero del asiento: 8
+Numero de ticket: #0027
+Localizador del ticket: #KQGQAA
+Precio de gastos en total: 100$

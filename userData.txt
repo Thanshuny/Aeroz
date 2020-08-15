@@ -1,7 +1,7 @@
 Nombres: Luis Armando
 Apellidos: Montero Marcano
 Cedula de identidad: 28694084
-Pasaporte: 132456789
+Pasaporte: 123456789
 Edad: 17
 
 Numeros telefonicos: 
@@ -11,5 +11,5 @@ Numeros telefonicos:
 Correos electronicos: 
 luismonteromarcano@gmail.com
 
-Pais de provinencia: Venezuela
-Ciudad de provinencia: Bolivar
+Pais de provinencia: venezuela
+Ciudad de provinencia: bolivar
