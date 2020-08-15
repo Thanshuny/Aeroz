@@ -156,7 +156,7 @@ int setRegistreUser(){
 	int age;
 	cout << "Edad del pasajero: ";
 	cin >> age;
-	
+
 	//numero telefonico
 	cout << endl << "Cuantos numeros a registrar? (max: 03)" << endl;
 	int numsSize;
@@ -222,6 +222,7 @@ int setRegistreUser(){
 	cin >> country;
 	cout << "Ciudad de provinencia: Cd. ";
 	cin >> city;
+
 	
 	//registro de datos
 	ofstream userData;
@@ -233,7 +234,7 @@ int setRegistreUser(){
 		userData << "Correos electronicos: \n" << emails[0] << '\n' << emails[1] << endl;
 		userData << "Pais de provinencia: " << country << '\n' << "Ciudad de provinencia: " << city;
 	}else{
-		printf ("ERROR 004 - File no found");
+		printf ("ERROR 006 - File no found");
 		exit(1);
 	}
 	userData.close();
@@ -250,6 +251,10 @@ int setRegistreSelf(){
 	if (i == 1){
 		setRegistreUser(); //llamando nuevamente al registro de usuario
 		cout << endl << "---usuario registrado---" << endl << endl;
+		
+	}else if (i != 1 || i != 2){
+		printf ("ERROR 004 - Character unklond");
+		return 0;	
 	}
 	
 	printf ("\n---Inicando registro de venta de boleto--- \n");
@@ -435,7 +440,7 @@ int setRegistreSelf(){
 	      		registreSelfData << "Localizador del ticket: " << '#' << alfb[row][cols] << alfb[row_2][cols_2] << alfb[row_3][cols_3] << alfb[row_4][cols_4] << alfb[row_5][cols_5] << alfb[row_6][cols_6] << endl;
 	      		registreSelfData << "Precio de gastos en total: " << prices[aereoConfirm - 1] << '$';
 		}else{
-			printf ("ERROR 004 - File no found");
+			printf ("ERROR 006 - File no found");
 		}
 	registreSelfData.close();
 	
@@ -453,7 +458,7 @@ int getRegistreData(){
 	cin >> select;
 	
 	ifstream userData("userData.txt", ios::in);
-	string users[3] = {"User 1" ,"User 2", "User 3"};
+	string users[3] = {"User 1"};
 	
 	try{
 		if (select == 1){
@@ -462,19 +467,18 @@ int getRegistreData(){
 				
 			if (userData.is_open()){
 				cout << endl << users[0] << " --Registrado--";
+			}else{
+				printf ("ERROR 006 - File not found");
+				exit(-1);	
 			}
 			
-			for (int i = 1; i <= 2; i++){
-				cout << endl << users[i];
-			}
-			
-			if (select != 1 || select != 2){
-				throw 0;
-			}
+		}else if (select >= 3){
+			throw 0;
 		}
+		
 	}catch(int x){
-		printf ("ERROR 004 - Files no found");
-		exit(1);
+		printf ("ERROR 004 - Character unklond");
+		exit(-1);
 	}		
 	
 			int usersSelect;
@@ -500,48 +504,54 @@ int getRegistreData(){
 			getRegistreData();
 		}
 	
-	if (select == 2){
-		
-		//ventas registradas
-		string self[3] = {"Self 1", "Self 2", "Self 3"};
-		printf ("\n--Ventas registradas-- \n");
-		
-		ifstream registreSelfData("SelfData.txt", ios::in);
-		if (registreSelfData.is_open()){
-			cout << endl << self[0] << " --Registrada--";
-		}else{
-			printf ("ERROR 004 - Files no found");
-			exit(1);
+	try{
+		if (select == 2){
+			
+			//ventas registradas
+			string self[3] = {"Self 1"};
+			printf ("\n--Ventas registradas-- \n");
+			
+			ifstream registreSelfData("SelfData.txt", ios::in);
+			
+			if (registreSelfData.is_open()){
+				cout << endl << self[0] << " --Registrada--";
+			}else{
+				printf ("ERROR 004 - Files no found");
+				exit(-1);
+			}
+			
+			int selfSelect;
+			cout << endl << endl << "cual de las ventas registradas desea ver?" << endl;
+			cin >> selfSelect;
+			
+			if (selfSelect == 1){
+				cout << endl << "--Datos dela venta *" << self[0] << "*--" << endl;
+				string line;
+					while (getline(registreSelfData, line)){
+						cout << line << "\n";
+					}
+				registreSelfData.close();
+				//funcion para llamar a los datos correspondientes al orden de registro
+			}else{
+				printf ("ERROR 004 - Files no found");
+				exit(1);
+			}
+			
+			printf ("------------------------------\n\n");
+			printf ("Desea terminar la revision de registros? \n(1)Si \n(2)No \n");
+			int i;
+			cin >> i;
+			
+			if (i == 2){
+				getRegistreData();
+			}
+			
+		}else if (select >= 3){
+			throw 0;
 		}
-		
-		for (int i = 1; i <= 2; i++){
-			cout << endl << self[i];
-		}
-		
-		int selfSelect;
-		cout << endl << endl << "cual de las ventas registradas desea ver?" << endl;
-		cin >> selfSelect;
-		
-		if (selfSelect == 1){
-			cout << endl << "--Datos dela venta *" << self[0] << "*--" << endl;
-			string line;
-				while (getline(registreSelfData, line)){
-					cout << line << "\n";
-				}
-			registreSelfData.close();
-			//funcion para llamar a los datos correspondientes al orden de registro
-		}else{
-			printf ("ERROR 004 - Files no found");
-			exit(1);
-		}
-		
-		printf ("------------------------------\n\n");
-		printf ("Desea terminar la revision de registros? \n(1)Si \n(2)No \n");
-		int i;
-		cin >> i;
-		
-		if (i == 2){
-			getRegistreData();
-		}
+	}catch(int x){
+		printf ("ERROR 004 - Character unklond");
+		exit(-1);
 	}
 }
+
