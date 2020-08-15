@@ -469,7 +469,7 @@ int getRegistreData(){
 	try{
 		if (select == 1){
 			//usuarios registrados
-			printf ("\n--Usuarios registrado s-- \n");
+			printf ("\n--Usuarios registrados-- \n");
 				
 			if (userData.is_open()){
 			cout << endl << users[0] << " --Registrado--";
@@ -556,4 +556,3 @@ int getRegistreData(){
 		exit(-1);
 	}
 }
-
