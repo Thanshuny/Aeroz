@@ -16,7 +16,6 @@ void endingSections(int n);
 int main() {
 	
 	cout << "---Sofware de registro de pasajeros (Version: 1.0)---" << endl << endl;
-	
 	cout << "Para seleccionar una opcion, insete el numero \ncorrespondiente a la opcion deseada." << endl << endl;
 	
 	
@@ -54,7 +53,7 @@ int main() {
 		
 		default:
 		 printf ("ERROR 001 - Character unklond");
-		 return 0;		
+		 exit (-1);	
 	}
 	
 	return 0;
@@ -71,6 +70,7 @@ int getMenu(){
 			if (confirm == 1){
 				cout << endl;
 				main();
+				
 			}else if (confirm == 2){
 				cout << endl << "---Programa finalizando---";
 				exit(1);
@@ -82,7 +82,7 @@ int getMenu(){
 			
 		}catch(int x){
 			printf ("ERROR 001 - Character unklond");
-			exit(1);	
+			exit(-1);	
 	}
 }
 
@@ -113,25 +113,28 @@ void confirmSection(int c){
 
 //finalizadon se secciones 
 void endingSections(int n){
-	
-	if (n == 1){
 		
-		cout << endl << "---Registro de datos concluido!---" << endl;
-		getMenu();	
+	switch (n){
 		
-	}else if (n == 2){
+		case 1:
+			printf ("\n---Registro de datos concluido!---\n");
+			getMenu();
+		break;
+		
+		case 2:
+			printf ("\n---Registro de ventas de boletos concluido!---\n");
+			getMenu();
+		break;
+		
+		case 3:
+			printf ("\n---Revision de datos de usuarios en el sistema concluido!---\n");
+			getMenu();
+		break;
+		
+		default:
+			printf ("ERROR 002 - Ending section fail");
+			exit(-1); 
 			
-		cout << endl << "---Registro de venta de boleto aereo concluido!---" << endl;
-		getMenu();	
-		
-	}else if (n == 3){
-		
-		cout << endl << "---Revision de datos de usuario concluido!---" << endl;
-		getMenu();
-		
-	}else{
-		printf ("ERROR 002 - Ending section fail");
-		exit(-1); 
 	}
 }
 
@@ -144,6 +147,7 @@ int setRegistreUser(){
 	cin >> name1;
 	cout << "Segundo nombre: ";
 	cin >> name2;
+	printf ("\n");
 	
 	//Apellidos
 	string lastName1, lastName2;
@@ -151,16 +155,18 @@ int setRegistreUser(){
 	cin >> lastName1;
 	cout << "Segundo apellido: ";
 	cin >> lastName2;
+	printf ("\n");
 	
 	//cedula y pasaporte
-	long int ced, pass;
+	string ced, pass;
 	cout << "Cedula de indentidad: Nro. ";
 	cin >> ced;
 	cout << "Pasaporte: Nro. ";
 	cin >> pass;
+	printf ("\n");
 	
 	//edad
-	int age;
+	string age;
 	cout << "Edad del pasajero: ";
 	cin >> age;
 
@@ -201,7 +207,7 @@ int setRegistreUser(){
 	//correos electronicos
 	cout << endl << "Cuantos correos desea registrar? (max: 03)" << endl;
 	int emailSize;
-	string emails[2] = {"",""};
+	string emails[3] = {"","",""};
 	cin >> emailSize;
 	cout << endl; 	//salto de linea
 	
@@ -216,6 +222,15 @@ int setRegistreUser(){
 			cin >> emails[0];
 			cout << "(2er) Ingrese el email a registrar: ";
 			cin >> emails[1];
+		break;
+		
+		case 3:
+			cout << "(1er) Ingrese el email a registrar: ";
+			cin >> emails[0];
+			cout << "(2er) Ingrese el email a registrar: ";
+			cin >> emails[1];
+			cout << "(3er) Ingrese el email a registrar: ";
+			cin >> emails[2];
 		break;
 		
 		default:
@@ -234,16 +249,19 @@ int setRegistreUser(){
 	//registro de datos
 	ofstream userData;
 	userData.open("userData.txt", ios::out);
+	
 	if (userData.is_open()){
 		userData << "Nombres: " << name1 << ' ' << name2 << '\n' << "Apellidos: " << lastName1 << ' ' << lastName2 << endl;
 		userData << "Cedula de identidad: "<< ced << '\n' << "Pasaporte: " << pass << '\n' << "Edad: " << age << '\n' << endl;
 		userData << "Numeros telefonicos: \n" << nums[0] << '\n' << nums[1] << '\n' << nums[2] << endl;
-		userData << "Correos electronicos: \n" << emails[0] << '\n' << emails[1] << endl;
+		userData << "Correos electronicos: \n" << emails[0] << '\n' << emails[1] << '\n' << emails[2] << endl;
 		userData << "Pais de provinencia: " << country << '\n' << "Ciudad de provinencia: " << city;
+		
 	}else{
 		printf ("ERROR 005 - File no found");
 		exit(1);
 	}
+	
 	userData.close();
 }
 
@@ -501,28 +519,29 @@ int getRegistreData(){
 			cout << endl << endl << "cual datos de usuario desea ver?" << endl;
 			cin >> usersSelect;
 			
-			if (usersSelect == 1){
-				cout << endl << "--Datos del usuario *" << users[0] << "*--" << endl;
-				string line;
-					while (getline(userData, line)){
-						cout << line << "\n";
-					}
-					
-				userData.close();
-				//funcion para llamar a los datos correspondientes al orden de registro
-			}
-		
-			printf ("------------------------------\n\n");
-			printf ("Desea terminar la revision de registros? \n(1)Si \n(2)No \n");
-			int i;
-			cin >> i;
-				
-			if (i == 1){
-				exit(1);
-			}else if (i == 2){
-				getRegistreData();
-			}	
+				if (usersSelect == 1){
+					cout << endl << "--Datos del usuario *" << users[0] << "*--" << endl;
+					string line;
+						while (getline(userData, line)){
+							cout << line << "\n";
+						}
+						
+					userData.close();
+					//funcion para llamar a los datos correspondientes al orden de registro
+				}
 			
+				printf ("------------------------------\n\n");
+				printf ("Desea terminar la revision de registros? \n(1)Si \n(2)No \n");
+				int i;
+				cin >> i;
+					
+				if (i == 1){
+					exit(1);
+					
+				}else if (i == 2){
+					getRegistreData();
+				}	
+		
 			}else{
 				printf ("\nNothing file registre\n");
 				getMenu();
@@ -535,41 +554,41 @@ int getRegistreData(){
 			
 			ifstream registreSelfData("SelfData.txt", ios::in);
 			
-			if (registreSelfData.is_open()){
-				cout << endl << self[0] << " --Registrada--";
-				
-			}else{
-				printf ("\nNothing file registre\n");
-				getMenu();
-			}
+				if (registreSelfData.is_open()){
+					cout << endl << self[0] << " --Registrada--";
+					
+				}else{
+					printf ("\nNothing file registre\n");
+					getMenu();
+				}
 			
 			int selfSelect;
 			cout << endl << endl << "cual de las ventas registradas desea ver?" << endl;
 			cin >> selfSelect;
 			
-			if (selfSelect == 1){
-				cout << endl << "--Datos dela venta *" << self[0] << "*--" << endl;
-				string line;
-				
-					while (getline(registreSelfData, line)){
-						cout << line << "\n";
-					}	
+				if (selfSelect == 1){
+					cout << endl << "--Datos dela venta *" << self[0] << "*--" << endl;
+					string line;
 					
-				registreSelfData.close();
-				
-			}else{   
-				printf ("\nNothing file registre\n");
-				getMenu();
-			}
+						while (getline(registreSelfData, line)){
+							cout << line << "\n";
+						}	
+						
+					registreSelfData.close();
+					
+				}else{   
+					printf ("\nNothing file registre\n");
+					getMenu();
+				}
 			
 			printf ("------------------------------\n\n");
 			printf ("Desea terminar la revision de registros? \n(1)Si \n(2)No \n");
 			int i;
 			cin >> i;
 			
-			if (i == 2){
-				getRegistreData();
-			}
+				if (i == 2){
+					getRegistreData();
+				}
 			
 		}else if (select >= 3){
 			throw 0;
