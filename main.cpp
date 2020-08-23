@@ -53,7 +53,7 @@ int main() {
 		break;
 		
 		default:
-		 printf ("ERROR 004 - Character unklond");
+		 printf ("ERROR 001 - Character unklond");
 		 return 0;		
 	}
 	
@@ -104,6 +104,7 @@ void confirmSection(int c){
 				throw 0;
 			}
 		} 		
+		
 	}catch(int x){
 		printf ("ERROR 001 - Character unklond");
 		exit(1); 
@@ -130,7 +131,7 @@ void endingSections(int n){
 		
 	}else{
 		printf ("ERROR 002 - Ending section fail");
-		exit(1); 
+		exit(-1); 
 	}
 }
 
@@ -193,7 +194,7 @@ int setRegistreUser(){
 		break;
 		
 		default:
-			printf ("ERROR 003 - Signed fail");
+			printf ("ERROR 004 - Signed fail");
 			exit(1); 
 	}
 		
@@ -218,7 +219,7 @@ int setRegistreUser(){
 		break;
 		
 		default:
-			printf ("ERROR 003 - Signed fail");
+			printf ("ERROR 004 - Signed fail");
 			exit(1);
 	}
 	
@@ -240,7 +241,7 @@ int setRegistreUser(){
 		userData << "Correos electronicos: \n" << emails[0] << '\n' << emails[1] << endl;
 		userData << "Pais de provinencia: " << country << '\n' << "Ciudad de provinencia: " << city;
 	}else{
-		printf ("ERROR 006 - File no found");
+		printf ("ERROR 005 - File no found");
 		exit(1);
 	}
 	userData.close();
@@ -251,7 +252,7 @@ int setRegistreSelf(){
 	srand (time(0)); 
 	
 	int i;
-	printf("\nDesea hacer nuevamente el registro de un pasajero? \n(1)Si \n(2)No \n");
+	printf("\nDesea hacer un nuevo registro de un pasajero? \n(1)Si \n(2)No \n");
 	cin >> i;
 	
 	if (i == 1){
@@ -259,11 +260,11 @@ int setRegistreSelf(){
 		cout << endl << "---usuario registrado---" << endl << endl;
 		
 	}else if (i >= 3){
-		printf ("ERROR 004 - Character unklond");
-		return 0;	
+		printf ("ERROR 001 - Character unklond");
+		exit (-1);
 	}
 	
-	printf ("\n---Inicando registro de venta de boleto--- \n");
+	printf ("\n---Registro de venta de pasajero (Iniciando)--- \n");
 
 	//origen y destino del viaje 
 	string originCountry, originCity, destinyCountry, dentinyCity;
@@ -285,7 +286,7 @@ int setRegistreSelf(){
 	cin >> dentinyCity;
 	
 	//aerorinea
-	string aerolines[5] = {"Aereo OwO", "Aereo UwU", "Aereo Ewe", "Aereo 7w7", "Aereo -w-"};
+	string aerolines[5] = {"Aereo 1", "Aereo 2", "Aereo 3", "Aereo 4", "Aereo 5"};
 	cout << endl << "Estas son las aerorineas disponibles: " << endl;
 	int a;
 	int aereoConfirm;
@@ -298,21 +299,35 @@ int setRegistreSelf(){
 	cout << endl << endl << "Seleccione la aerorinea deseada: ";
 	cin >> aereoConfirm; 
 	
+	if (aereoConfirm > 5){
+		printf ("ERROR 001 - Character unklond");
+		exit (-1);
+	}
+	
 	//Clases de pasajero
 	string clasesGenerales[3] = {"Primera Clase", "Segunda Clase", "Clase economica"};
 	printf ("\nQue clase desea quedarse? \n");
 	printf ("(1)Primera Clase \n(2)Segunda Clase \n(3)Clase economica \n");
-	
 	int classSelect;
 	cin >> classSelect;
+	
+	if (classSelect > 3){
+		printf ("ERROR 001 - Character unklond");
+		exit (-1);
+	}
 	
 	//asiento del pasajero
 	int asientos[12] = {1,2,3,4,5,6,7,8,9,10,11,12};
 	int selectAsient;
-	printf ("\nSeleciene su haciento (Debe ser un numero del 1 al 12)\n");
+	printf ("\nSeleciene el numero del haciento (Debe ser un numero del 1 al 12)\n");
 	cin >> selectAsient;
 	
-	printf ("-----------------------------");
+	if (selectAsient > 12){
+		printf ("ERROR 006 - Numero muy alto");
+		exit (-1);
+	}
+	
+	printf ("\n-----------------------------");
 	
 	//imprimiendo todos las seleciones
 	switch (classSelect){
@@ -329,15 +344,15 @@ int setRegistreSelf(){
 		break;
 		
 		default:
-		 printf ("ERROR 004 - Character unklond");
-		 return 0;	
+		printf ("ERROR 007 - Print fail");
+		exit (-1);
 	}
 
 	//asiento del pasajero
-	cout << "numero de haciento: " << asientos[selectAsient - 1] << endl;
+	cout << "numero de asiento: " << asientos[selectAsient - 1] << endl;
 	
 	//numero de ticket
-	long int tiket_nums = (rand () % 999);
+	int tiket_nums = (rand () % 999);
 	cout << "Numero de ticket: #00" << tiket_nums << endl;
 	
 	//localizador del ticket
@@ -374,30 +389,31 @@ int setRegistreSelf(){
 	switch (aereoConfirm){
 		
 		case 1:
-			cout << "Aerorinea: " << "\"" << aerolines[0] << "\"" << " --- " << prices[0] << "$ "<< endl << endl;
+			cout << "Aerorinea: " << "\"" << aerolines[0] << "\"" << " --- " << prices[0] << "$ ";
 		break;
 		
 		case 2:
-			cout << "Aerorinea: " << "\"" << aerolines[1] << "\"" << " --- " << prices[1] << "$ "<< endl << endl;
+			cout << "Aerorinea: " << "\"" << aerolines[1] << "\"" << " --- " << prices[1] << "$ ";
 		break;
 		
 		case 3:
-			cout << "Aerorinea: " << "\"" << aerolines[2] << "\"" << " --- " << prices[2] << "$ "<< endl << endl;
+			cout << "Aerorinea: " << "\"" << aerolines[2] << "\"" << " --- " << prices[2] << "$ ";
 		break;
 		
 		case 4:
-			cout << "Aerorinea: " << "\"" << aerolines[3] << "\"" << " --- " << prices[3] << "$ "<< endl << endl;
+			cout << "Aerorinea: " << "\"" << aerolines[3] << "\"" << " --- " << prices[3] << "$ ";
 		break;
 		
 		case 5:
-			cout << "Aerorinea: " << "\"" << aerolines[4] << "\"" << " --- " << prices[4] << "$ "<< endl << endl;
+			cout << "Aerorinea: " << "\"" << aerolines[4] << "\"" << " --- " << prices[4] << "$ ";
 		break;
 		
 		default:
-			printf ("ERROR 005 - Selection error");
-			exit(1);
+			printf ("ERROR 003 - Selection error");
+			exit(-1);
 			
 	}
+	printf ("\n-----------------------------\n\n");
 	
 	//revicion si se decea continuar con la compra del ticket
 	int confirm_price;
@@ -429,13 +445,14 @@ int setRegistreSelf(){
 		break;
 		
 		default:
-			printf ("ERROR 005 - Selection error");
-			exit(1);
-	}
+			printf ("ERROR 003 - Selection error");
+			exit(-1);
+		}
 	
 	//registro de venta en archivo
 	ofstream registreSelfData;
-		registreSelfData.open("SelfData.txt", ios::out);
+	registreSelfData.open("SelfData.txt", ios::out);
+		
 		if (registreSelfData.is_open()){ 
 				registreSelfData << "Origen del viaje: \n" << "Pais: " << originCountry << '\n' << "Ciudad: " << originCity << '\n' << endl;
 				registreSelfData << "Destino del viaje: \n" << "Pais: " << destinyCountry << '\n' << "Ciudad: " << dentinyCity << '\n' << endl;
@@ -446,14 +463,20 @@ int setRegistreSelf(){
 	      		registreSelfData << "Localizador del ticket: " << '#' << alfb[row][cols] << alfb[row_2][cols_2] << alfb[row_3][cols_3] << alfb[row_4][cols_4] << alfb[row_5][cols_5] << alfb[row_6][cols_6] << endl;
 	      		registreSelfData << "Precio de gastos en total: " << prices[aereoConfirm - 1] << '$';
 		}else{
-			printf ("ERROR 006 - File no found");
+			printf ("ERROR 005 - File no found");
 		}
-	registreSelfData.close();
+		
+		//cerrando el archivo
+		registreSelfData.close(); 
 	
-		if (confirm_price == 2){	//canselacio de transacion
-			printf ("#-Transacion cancelada-#");
-			cout << endl <<"--------------------------------------------------------------------" << endl;
-		}
+		
+	}else if (confirm_price == 2){	//canselacio de transacion
+		printf ("#-Transacion cancelada-#");
+		printf ("\n-----------------------------\n");
+			
+	}else{
+		printf ("ERROR 001 - Character unklond");
+		exit (-1);
 	}
 }
 
@@ -501,8 +524,8 @@ int getRegistreData(){
 			}	
 			
 			}else{
-				printf ("ERROR 006 - File not found");
-				exit(-1);	
+				printf ("\nNothing file registre\n");
+				getMenu();
 			}
 				
 		}else if (select == 2){	//ventas registra
@@ -514,9 +537,10 @@ int getRegistreData(){
 			
 			if (registreSelfData.is_open()){
 				cout << endl << self[0] << " --Registrada--";
+				
 			}else{
-				printf ("ERROR 004 - Files no found");
-				exit(-1);
+				printf ("\nNothing file registre\n");
+				getMenu();
 			}
 			
 			int selfSelect;
@@ -534,8 +558,8 @@ int getRegistreData(){
 				registreSelfData.close();
 				
 			}else{   
-				printf ("ERROR 004 - Files no found");
-				exit(1);
+				printf ("\nNothing file registre\n");
+				getMenu();
 			}
 			
 			printf ("------------------------------\n\n");
@@ -552,7 +576,7 @@ int getRegistreData(){
 		}
 		
 	}catch(int x){
-		printf ("ERROR 004 - Character unklond");
+		printf ("ERROR 001 - Character unklond");
 		exit(-1);
 	}
 }

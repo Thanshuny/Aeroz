@@ -1,0 +1,14 @@
+Origen del viaje: 
+Pais: 1
+Ciudad: 2
+
+Destino del viaje: 
+Pais: 1
+Ciudad: 25
+
+Aerolinea: Aereo 5
+Clase: Clase economica
+Numero del asiento: 12
+Numero de ticket: #00253
+Localizador del ticket: #LQEBAB
+Precio de gastos en total: 500$
