@@ -1,4 +1,4 @@
-#include <iostream>
+			#include <iostream>
 #include <cstdlib>
 #include <fstream>
 #include <string>
@@ -76,7 +76,7 @@ int getMenu(){
 				exit(1);
 			}
 			
-			if (confirm != 1 || confirm != 2){
+			if (confirm >= 3){
 				throw 0;
 			}
 			
@@ -337,7 +337,7 @@ int setRegistreSelf(){
 	//asiento del pasajero
 	int asientos[12] = {1,2,3,4,5,6,7,8,9,10,11,12};
 	int selectAsient;
-	printf ("\nSeleciene el numero del haciento (Debe ser un numero del 1 al 12)\n");
+	printf ("\nSeleciene el numero del asiento (Debe ser un numero del 1 al 12)\n");
 	cin >> selectAsient;
 	
 	if (selectAsient > 12){
@@ -505,7 +505,8 @@ int getRegistreData(){
 	cin >> select;
 	
 	ifstream userData("userData.txt", ios::in);
-	string users[3] = {"User 1"};
+	string users[1] = {"User 1"};
+	string numb[3] = {"(1)","(2)","(3)"};
 	
 	try{
 		if (select == 1){
@@ -513,7 +514,7 @@ int getRegistreData(){
 			printf ("\n--Usuarios registrados-- \n");
 				
 			if (userData.is_open()){
-			cout << endl << users[0] << " --Registrado--";
+			cout << endl << numb[0] << users[0] << " --Registrado--";
 				
 		    int usersSelect;
 			cout << endl << endl << "cual datos de usuario desea ver?" << endl;
@@ -549,13 +550,14 @@ int getRegistreData(){
 				
 		}else if (select == 2){	//ventas registra
 		
-			string self[3] = {"Self 1"};
+			string self[1] = {"(1) Self 1"};
+			
 			printf ("\n--Ventas registradas-- \n");
 			
 			ifstream registreSelfData("SelfData.txt", ios::in);
 			
 				if (registreSelfData.is_open()){
-					cout << endl << self[0] << " --Registrada--";
+					cout << endl << numb[0] << self[0] << " --Registrada--";
 					
 				}else{
 					printf ("\nNothing file registre\n");
