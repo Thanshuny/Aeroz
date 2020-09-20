@@ -1,0 +1,15 @@
+Datos del pasajero: 
+
+Nombres: , 
+Apellidos: , 
+Cedula: 2147483647
+Pasaporte: 10031112
+Edad: 4729440 Años
+Cantidad de Numero asignandos: 4533812
+Numeros del pasajero: 
+
+
+
+Correo: Cd. 
+Ciudad: 
+Pais: 

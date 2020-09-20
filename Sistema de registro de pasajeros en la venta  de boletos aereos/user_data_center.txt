@@ -1,0 +1,11 @@
+Datos del pasajero: 
+
+Nombres: 23156, fsdft
+Apellidos: frt, trwe
+Cedula: 1
+Pasaporte: 1
+Edad: 1 Años
+Cantidad de Numero asignandos: 1
+Numeros del pasajero: 
+1
+
