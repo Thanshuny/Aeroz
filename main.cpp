@@ -15,7 +15,7 @@ void endingSections(int n);
 
 int main() {
 	
-	cout << " \t  #-------------Bienvenido a Aero-------------# \n#-------Sofware de registro de pasajeros y venta de boletos-------# \n\t\t\t (Version: 1.1)" << endl << endl;
+	cout << " \t  #-------------Bienvenido a Aeroz-------------# \n#-------Sofware de registro de pasajeros y venta de boletos-------# \n\t\t\t (Version: 1.1)" << endl << endl;
 	cout << "Para seleccionar una opcion, insete el numero \ncorrespondiente a la opcion deseada." << endl << endl;
 	
 	
