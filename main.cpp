@@ -8,7 +8,7 @@ using namespace std;
 int setRegistreUser();
 int setRegistreSelf();
 int getRegistreData();
-int getMenu();
+void getMenu();
 
 void confirmSection(int c);
 void endingSections(int n); 
@@ -60,7 +60,7 @@ int main() {
 }
 
 //llamado a menu
-int getMenu(){
+void getMenu(){
 	cout << endl << "desea volver al menu? \n(1)Si \n(2)No" << endl;
 		
 		int confirm;
